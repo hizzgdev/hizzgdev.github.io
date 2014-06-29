@@ -1,1 +1,67 @@
-hello, I'm hizzgdev
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="//oss.maxcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/markdown.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <title>title</title>
+</head>
+<body>
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="header">
+        <h2><a href="/">hizzgdev</a></h2>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8">
+        <!--loop start-->
+        <div class="panel panel-default">
+          <div class="panel-heading article-heading">
+            <h3><a href="/{{blogid[2:6]}}/{{blogid[6:8]}}/{{blogid[8:]}}" target="_blank">{{blog[1]}}</a></h3>
+          </div>
+          <div class="panel-body article-body md">
+            {{!blog[2]}}
+          </div>
+          <div class="panel-footer">
+             <span class="text-muted">{{blog[0][2:6]}}年{{blog[0][6:8]}}月{{blog[0][8:10]}}日</span><!--<span class="glyphicon glyphicon-share"></span>分享(12)--><span class="glyphicon glyphicon-comment text-muted"></span><a class="text-muted" href="/{{blogid[2:6]}}/{{blogid[6:8]}}/{{blogid[8:]}}#comments" target="_blank"><span class="ds-thread-count" data-thread-key="{{blog[0]}}">暂无评论</span></a>
+          </div>
+        </div>
+        <!--loop end-->
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h4>最新评论</h4>
+            <ul class="list-unstyled ds-recent-comments"></ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h4>历史文章</h4>
+            <ul class="list-unstyled side-list">
+              <!--loop start-->
+              <li><a href="/{{idx[0][0:4]}}/{{idx[0][4:]}}">{{idx[0][0:4]}}年{{idx[0][4:6]}}月 ({{idx[1]}})</a></li>
+              <!--loop end-->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>2014 &copy; woshipopo.sinaapp.com</p>
+    </div>
+  </div>
+</body>
+<script src="//oss.maxcdn.com/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<script src="//oss.maxcdn.com/bootstray/3.2.0/js/bootstrap.min.js"></script>
+</html>
