@@ -5,11 +5,19 @@ body{font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft YaHei",simsun,sans
 .container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;}
 h1,h2,h3,h4,h5,h6{font-weight:bold;-webkit-font-smoothing:antialiased;font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;}
 h1{font-size:2em;}
-h1 span.en{margin-left:10px;}
+h1 span{float:left;margin-right:20px;}
+h1:after{display:block;content:" ";clear:both;}
 header{border-bottom:solid 2px #ccc;padding-top:50px;}
 footer{border-top:solid 2px #ccc;padding-top:10px;text-align:right;}
-ul{background-color:rgba(255,255,255,0.5);padding-top:20px;padding-bottom:20px;margin:0;}
+section{background-color:rgba(255,255,255,0.5);padding-top:20px;padding-bottom:20px;margin:0;}
+section:after{display:block;content:" ";clear:both;}
+ul{margin:0;min-width:160px;float:left;}
 li{margin:10px 0;font-size:1.2em;}
-.qr-code{float:right;margin-right:23px;margin-top:23px;}
+img{float:right;margin-right:23px;}
 li a{color:#2d6ca2;text-decoration:none;padding:4px 8px;border-radius:5px;}
 li a:hover{color:#fff;background-color:rgba(0,0,0,0.6);}
+@media (max-width:380px){
+  header{padding-top:10px;}
+  ul{float:none;}
+  img{float:none;display:block;margin:10px auto;}
+}
