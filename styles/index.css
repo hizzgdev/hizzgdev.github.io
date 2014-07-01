@@ -4,13 +4,13 @@ body{font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft YaHei",simsun,sans
 }
 .container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;}
 h1,h2,h3,h4,h5,h6{font-weight:bold;-webkit-font-smoothing:antialiased;font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;}
-h1{font-size:2em;}
-h1 span{float:left;margin-right:20px;}
-h1:after{display:block;content:" ";clear:both;}
 header{border-bottom:solid 2px #ccc;padding-top:50px;}
 footer{border-top:solid 2px #ccc;padding-top:10px;text-align:right;}
+h1{font-size:2em;}
+h1 span{float:left;margin-right:20px;}
+p{padding-left:6px;}
+.clear{display:block;clear:both;}
 .main{background-color:rgba(255,255,255,0.5);padding-top:20px;padding-bottom:20px;margin:0;}
-.main:after{display:block;content:" ";clear:both;}
 ul{margin:0;min-width:160px;float:left;}
 li{margin:10px 0;font-size:1.2em;}
 img{float:right;margin-right:23px;}
