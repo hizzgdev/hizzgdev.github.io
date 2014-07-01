@@ -4,12 +4,12 @@
 .md h1, .md h2, .md h3, .md h4, .md h5, .md h6 { margin: 20px 0 20px; padding: 0; font-weight: bold; -webkit-font-smoothing: antialiased; font-family:"Microsoft YaHei";}
 .md h1:hover a.anchor, .md h2:hover a.anchor, .md h3:hover a.anchor, .md h4:hover a.anchor, .md h5:hover a.anchor, .md h6:hover a.anchor {text-decoration: none; }
 .md h1 tt, .md h2 tt, .md h3 tt, .md h4 tt, .md h5 tt, .md h6 tt, .md h1 code, .md h2 code, .md h3 code, .md h4 code, .md h5 code, .md h6 code { font-size: inherit; }
-.md h1 { font-size: 28px; color: black; }
-.md h2 { font-size: 24px; border-bottom: 1px solid #eee; color: #000; padding:10px 0; }
-.md h3 { font-size: 18px; }
+.md h1 { font-size: 24px; color: black; }
+.md h2 { font-size: 18px; border-bottom: 1px solid #eee; color: #000; padding:10px 0; }
+.md h3 { font-size: 16px; }
 .md h4 { font-size: 16px; }
-.md h5 { font-size: 14px; }
-.md h6 { color: #777777; font-size: 14px; }
+.md h5 { font-size: 16px; }
+.md h6 { color: #777777; font-size: 16px; }
 .md p, .md blockquote, .md ul, .md ol, .md dl, .md li, .md table, .md pre { margin: 5px 0; color:#333;}
 .md hr { border: 0 none; color: #ccc; height: 4px; padding: 0; }
 .md p { line-height:26px; margin-bottom: 10px; font-size:16px; text-indent:32px;}

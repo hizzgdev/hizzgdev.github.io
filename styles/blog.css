@@ -13,9 +13,12 @@ h1,h2,h3,h4,h5,h6 {font-weight: bold; -webkit-font-smoothing: antialiased; font-
 .article-heading{padding:0 30px;}
 .article-heading h1, .article-heading h2, .article-heading h3, .article-heading h4 {padding:20px 0; color:#666; border-bottom:solid 1px #ccc;}
 .article-heading a{color:inherit;}
+.article-body{padding-left:30px;padding-right:30px;}
 .article-body img{display: block; height: auto; max-width: 100%;}
 .hidden-anchor{font-size:1px; height:1px; overflow:hidden;}
 .panel-footer{padding:10px 30px 10px 20px; background-color:#fafafa;}
 .panel-footer>span{margin:0 2px 0 10px;}
 
 .footer{padding:15px; border-top:solid 1px #ccc;}
+
+#blog_item_template{display:none;}

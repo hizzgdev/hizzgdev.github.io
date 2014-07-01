@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="//oss.maxcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
     -->
     <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles/blog.css" />
+    <link rel="stylesheet" href="../styles/loading.css" />
     <link rel="stylesheet" href="../styles/markdown.css" />
-    <link rel="stylesheet" href="../styles/style.css" />
     <!--[if lt IE 9]>
     <script src="//apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
     <script src="//apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -30,19 +31,40 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-8">
+        <div id="loading" class="panel panel-default">
+          <div class="panel-body article-body md">
+            <div>
+              <div class="loading" index="0"></div>
+              <div class="loading" index="1"></div>
+              <div class="loading" index="2"></div>
+              <div class="loading" index="3"></div>
+              <div class="loading" index="4"></div>
+            </div>
+          </div>
+        </div>
+        <div id="blog_list">
+        </div>
         <!--loop start-->
-        <div class="panel panel-default">
+        <div id="blog_item_template" class="panel panel-default">
           <div class="panel-heading article-heading">
-            <h3><a href="/{{blogid[2:6]}}/{{blogid[6:8]}}/{{blogid[8:]}}" target="_blank">{{blog[1]}}</a></h3>
+            <h3><a href="#" target="_blank">#</a></h3>
           </div>
           <div class="panel-body article-body md">
-            {{!blog[2]}}
+              <div class="loading" index="0"></div>
+              <div class="loading" index="1"></div>
+              <div class="loading" index="2"></div>
+              <div class="loading" index="3"></div>
+              <div class="loading" index="4"></div>
           </div>
           <div class="panel-footer">
-             <span class="text-muted">{{blog[0][2:6]}}年{{blog[0][6:8]}}月{{blog[0][8:10]}}日</span><!--<span class="glyphicon glyphicon-share"></span>分享(12)--><span class="glyphicon glyphicon-comment text-muted"></span><a class="text-muted" href="/{{blogid[2:6]}}/{{blogid[6:8]}}/{{blogid[8:]}}#comments" target="_blank"><span class="ds-thread-count" data-thread-key="{{blog[0]}}">暂无评论</span></a>
+             <span class="text-muted date"></span><!--<span class="glyphicon glyphicon-share"></span>分享(12)--><span class="glyphicon glyphicon-comment text-muted"></span><a class="text-muted" href="#comments" target="_blank"><span class="ds-thread-count" data-thread-key="">暂无评论</span></a>
           </div>
         </div>
         <!--loop end-->
+        <ul class="pager">
+          <li><a class="prev" href="#">&laquo;更早的内容</a></li>
+          <li><a class="next" href="#">更新的内容&raquo;</a></li>
+        </ul>
       </div>
       <div class="col-xs-12 col-sm-4">
         <div class="panel panel-default">
@@ -74,4 +96,7 @@
 <script src="//oss.maxcdn.com/jquery/1.10.2/jquery-1.10.2.min.js"></script>
 <script src="//oss.maxcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 -->
+<script src="../scripts/base64.js"></script>
+<script src="../scripts/markdown.min.js"></script>
+<script src="../scripts/blog.js"></script>
 </html>
