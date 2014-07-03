@@ -1,11 +1,21 @@
+(function(){
+var __query_path = location.pathname;
+var _query_path = 'blog'
+var _query_item = false;
+if(/\/blog\/.*\.html$/.test(__query_path)){
+    _query_path = __query_path.substr(1).replace(/\.html$/,'.md');
+    _query_item = true;
+}
+
+//_query_item = true;
+//_query_path = 'blog/2014-07-01_Hello-World.html'.replace(/\.html$/,'.md');
+
 var path_prefix = "https://api.github.com/repos/hizzgdev/hizzgdev.github.io/contents/"
-var path_suffix = "?callback=show_post"
-var path_posts = "blog/posts"
+var path_suffix = "?callback=__post"
 
 // path_prefix = "https://api.github.com/repos/sneezry/sneezry.github.com/contents/"
-// path_posts = "md"
+// _query_path = "md"
 
-if (typeof(config) == 'undefined') { config = {lang:'zh'}; }
 var page_size = 3;
 
 var $html = document.getElementsByTagName('html')[0];
@@ -15,7 +25,6 @@ var $template = document.getElementById('blog_item_template');
 
 var __all = null;
 var __all_len = 0;
-
 var __posts = {};
 var __page = 0;
 var __page_total = 1;
@@ -23,25 +32,9 @@ var __page_total = 1;
 var _first_load = true;
 
 function cache_list(resp){
-    var all_zh = resp.data.reverse();
-    var all_len_zh = all_zh.length;
-    var all_en = [];
-    var all_len_en = 0;
-
-    var i = all_len_zh;
-    var post = null;
-    while(i--){
-        post = all_zh[i];
-        if(/.en.md$/.test(post.name)){
-            all_zh.splice(i,1);
-            all_len_zh--;
-            all_en.unshift(post)
-            all_len_en++;
-        }
-    }
-    __all = config.lang == 'zh' ? all_zh : all_en;
-    __all_len = config.lang == 'zh' ? all_len_zh : all_len_en;
-
+    console.log(resp);
+    __all = resp.data.reverse();
+    __all_len = __all.length;
     __page_total = Math.ceil(__all_len/page_size);
     show_list(1);
 }
@@ -79,22 +72,27 @@ function show_list(page){
     }
     for(var i=min;i<max;i++){
         post = __all[i];
-        show_post_meta(post);
-        query_post(post.path);
+        show_post_meta(post, true);
+        query_item(post.path);
     }
     _first_load = false;
 }
 
-function show_post_meta(post){
-    //console.log(post);
+function show_post_meta(post, inlist){
+    console.log(post);
     var el = $template.cloneNode(true);
     el.id = 'blog_'+post.sha;
     $container.appendChild(el);
     var post_date = post.name.substr(0,10);
-    var post_name = post.name.substr(11).replace(/-/g,' ').replace(/\.en\.md/,'').replace(/\.md/,'');
-    $('h3 a',el).text(post_name).attr('href','#!'+post.path);
+    var post_name = post.name.substr(11).replace(/-/g,' ').replace(/\.en\.md$/,'').replace(/\.md$/,'');
+    if(inlist){
+        $('.article-heading h3 a',el).text(post_name).attr('href','/'+post.path.replace(/\.md$/,'.html'));
+    }else{
+        $loading.parentNode.removeChild($loading);
+        $('.pager').remove();
+        $('.article-heading h3',el).text(post_name);
+    }
     $('span.date',el).text(post_date);
-    $('a.ds-thread-count',el).attr('data-thread-key',post.sha).click(function(e){toggle_comments(e);return false;});
 }
 
 function show_post(resp){
@@ -102,12 +100,18 @@ function show_post(resp){
     if(!(path in __posts)){
         __posts[path] = resp;
     }
+    if(resp.meta.status == 404){
+        location.href='err.404.html#'+location.pathname;
+    }
     post = resp.data;
+    if(_query_item){
+        show_post_meta(post, false);
+    }
     var el_id = '#blog_'+post.sha;
     $(el_id+' .article-body').html(markdown.toHTML(Base64.decode(post.content)));
 }
 
-function query_post(path){
+function query_item(path){
     if(path in __posts){
         show_post(__posts[path]);
     }else{
@@ -118,30 +122,27 @@ function query_post(path){
     }
 }
 
-function toggle_comments(e){
-    var el = $(e.target);
-    var k = el.attr('data-thread-key');
-    if(el.attr('comment-shown') == 'true'){
-        $('#blog_'+k+' .comments').remove();
-        el.attr('comment-shown', 'false')
+function query_list(path){
+    var el = document.createElement('script');
+    el.src = path_prefix+path+"?callback=__list";
+    $html.appendChild(el);
+    setTimeout(function(){$html.removeChild(el);},10000);
+}
+
+function page_load(){
+    $('.pager .next').click(function(){next_page();});
+    $('.pager .prev').click(function(){prev_page();});
+    if(_query_item){
+        query_item(_query_path);
     }else{
-        var c = document.createElement('div');
-        c.className = 'panel-footer comments';
-        c.setAttribute('data-thread-key', k);
-        DUOSHUO.EmbedThread(c);
-        $(c).appendTo('#blog_'+k+'');
-        el.attr('comment-shown', 'true')
+        query_list(_query_path);
     }
 }
 
-(function query_post(path){
-    var el = document.createElement('script');
-    el.src = path_prefix+path+"?callback=cache_list";
-    $html.appendChild(el);
-    setTimeout(function(){$html.removeChild(el);},10000);
-})(path_posts);
+window.__list = function(o){ cache_list(o); };
+window.__post = function(o){ show_post(o); };
 
-(function page_load(){
-    $('.pager .next').click(function(){next_page();});
-    $('.pager .prev').click(function(){prev_page();});
+page_load();
+
 })();
+
