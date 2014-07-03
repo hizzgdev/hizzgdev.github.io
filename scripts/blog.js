@@ -84,7 +84,7 @@ function show_post_meta(post, inlist){
     el.id = 'blog_'+post.sha;
     $container.appendChild(el);
     var post_date = post.name.substr(0,10);
-    var post_name = post.name.substr(11).replace(/-/g,' ').replace(/\.en\.md$/,'').replace(/\.md$/,'');
+    var post_name = post.name.substr(11).replace(/-/g,' ').replace(/\.md$/,'');
     if(inlist){
         $('.article-heading h3 a',el).text(post_name).attr('href','/'+post.path.replace(/\.md$/,'.html'));
     }else{
