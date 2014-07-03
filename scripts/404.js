@@ -1,8 +1,6 @@
 (function(){
     var path = location.pathname;
-    if(! /^\/path/.test(path)){
-        console.log('redirect');
-    }else{
-        console.log('ok');
+    if(! /^\/blog/.test(path)){
+        location.href = '/err.404.html#'+path;
     }
 })();
