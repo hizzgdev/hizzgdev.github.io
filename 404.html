@@ -10,13 +10,13 @@
     <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <title>张志刚的博客</title>
+    <title>Zhigang Zhang's Blog</title>
 </head>
 <body>
   <div class="container">
     <header>
-      <h2>张志刚的博客</h2>
-      <p>一个80后程序员的胡言乱语</p>
+      <h2>Zhigang Zhang's Blog</h2>
+      <p>An oriental post-80s programmer's talk</p>
     </header>
   </div>
   <div class="container">
@@ -38,7 +38,7 @@
         <!--loop start-->
         <div id="blog_item_template" class="panel panel-default">
           <div class="panel-heading article-heading">
-            <h3><a href="#" target="_blank">#</a></h3>
+            <h3><a href="#">#</a></h3>
           </div>
           <div class="panel-body article-body md">
               <div class="loading" index="0"></div>
@@ -59,9 +59,11 @@
       </div>
       <div class="col-xs-12 col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-body">
-            <h4>最新评论</h4>
-            <ul class="list-unstyled ds-recent-comments"></ul>
+          <div class="panel-body nav-side">
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/works/">Works</a>
+            <a href="/about/">About me</a>
           </div>
         </div>
         <div class="panel panel-default">
@@ -69,7 +71,6 @@
             <h4>历史文章</h4>
             <ul class="list-unstyled side-list">
               <!--loop start-->
-              <li><a href="/{{idx[0][0:4]}}/{{idx[0][4:]}}">{{idx[0][0:4]}}年{{idx[0][4:6]}}月 ({{idx[1]}})</a></li>
               <!--loop end-->
             </ul>
           </div>
