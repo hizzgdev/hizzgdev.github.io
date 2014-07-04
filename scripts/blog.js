@@ -123,10 +123,14 @@ function show_post(resp, fresh){
     disqus_reset();
 }
 
-function query_item(path){
+function script_inject(path){
     var el = document.createElement('script');
-    el.src = path_prefix+path+path_suffix;
+    el.src = path;
     $html.appendChild(el);
+}
+
+function query_item(path){
+    script_inject(path_prefix+path+path_suffix);
 }
 
 function query_item_cache(path){
@@ -149,9 +153,7 @@ function query_item_cache(path){
 }
 
 function query_list(path){
-    var el = document.createElement('script');
-    el.src = path_prefix+path+"?callback=__list";
-    $html.appendChild(el);
+    script_inject(path_prefix+path+"?callback=__list");
 }
 
 function query_list_cache(path){
@@ -184,8 +186,10 @@ function page_load(){
     $('.pager .prev').click(function(){prev_page();});
     if(_query_item){
         query_item_cache(_query_path);
+        script_inject('//hizzgdev.disqus.com/embed.js');
     }else{
         query_list_cache(_query_path);
+        script_inject('//hizzgdev.disqus.com/count.js');
     }
 }
 
