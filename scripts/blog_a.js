@@ -267,6 +267,7 @@ function show_list(page){
         query_item_cache(post.path);
     }
     _first_load = false;
+    disqus_reset();
 }
 
 function show_post_meta(post, inlist){
@@ -308,6 +309,7 @@ function show_post(resp, fresh){
     }
     var el_id = '#blog_'+post.sha;
     $(el_id+' .article-body').html(markdown.toHTML(Base64.decode(post.content)));
+    disqus_reset();
 }
 
 function query_item(path){
@@ -357,6 +359,12 @@ function query_list_cache(path){
         }else{
             query_list(path);
         }
+    }
+}
+
+function disqus_reset(){
+    if(!!DISQUS){
+        DISQUS.reset();
     }
 }
 
