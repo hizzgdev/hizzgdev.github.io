@@ -384,6 +384,7 @@ function page_load(){
 
 window.__list = function(o){ list_post(o, true); };
 window.__post = function(o){ show_post(o, true); };
+window.disqus_shortname = 'hizzgdev';
 
 page_load();
 
