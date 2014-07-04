@@ -32,8 +32,8 @@ var _first_load = true;
 
 function list_post(resp, fresh){
     if(fresh && !!localStorage){
-        localStorage['list_time'] = (new Date()).toISOString();
-        localStorage['list_cache'] = JSON.stringify(resp);
+        localStorage['blog/list.time'] = (new Date()).toISOString();
+        localStorage['blog/list'] = JSON.stringify(resp);
     }
     __all = resp.data.reverse();
     __all_len = __all.length;
@@ -159,14 +159,14 @@ function query_list_cache(path){
     if(!localStorage){
         query_list(path);
     }else{
-        var list_time_str = localStorage['list_time'];
+        var list_time_str = localStorage['blog/list.time'];
         if(!!list_time_str){
             var list_time = new Date(list_time_str);
             var now_time = new Date();
             if(now_time - list_time > 1000*60*__cache_minute){
                 query_list(path);
             }else{
-                list_post(JSON.parse(localStorage['list_cache']), false);
+                list_post(JSON.parse(localStorage['blog/list']), false);
             }
         }else{
             query_list(path);
