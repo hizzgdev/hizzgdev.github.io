@@ -15,7 +15,7 @@ ul{margin:0;min-width:160px;float:left;}
 li{margin:10px 0;font-size:1.2em;}
 img{float:right;margin-right:23px;}
 li a{color:#2d6ca2;text-decoration:none;padding:4px 8px;border-radius:5px;}
-li a:hover{color:#fff;background-color:rgba(0,0,0,0.6);}
+li a:hover{color:#fff;background-color:#666;background-color:rgba(0,0,0,0.6);}
 @media (max-width:380px){
   header{padding-top:10px;}
   ul{float:none;}

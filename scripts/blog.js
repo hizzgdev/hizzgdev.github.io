@@ -1,4 +1,5 @@
 (function(){
+var __cache_minute = 20;
 var __query_path = location.pathname;
 var _query_path = 'blog'
 var _query_item = false;
@@ -25,14 +26,16 @@ var $template = document.getElementById('blog_item_template');
 
 var __all = null;
 var __all_len = 0;
-var __posts = {};
 var __page = 0;
 var __page_total = 1;
 
 var _first_load = true;
 
-function cache_list(resp){
-    console.log(resp);
+function list_post(resp, fresh){
+    if(fresh && !!localStorage){
+        localStorage['list_time'] = (new Date()).toISOString();
+        localStorage['list_cache'] = JSON.stringify(resp);
+    }
     __all = resp.data.reverse();
     __all_len = __all.length;
     __page_total = Math.ceil(__all_len/page_size);
@@ -73,7 +76,7 @@ function show_list(page){
     for(var i=min;i<max;i++){
         post = __all[i];
         show_post_meta(post, true);
-        query_item(post.path);
+        query_item_cache(post.path);
     }
     _first_load = false;
 }
@@ -95,15 +98,17 @@ function show_post_meta(post, inlist){
     $('span.date',el).text(post_date);
 }
 
-function show_post(resp){
-    path = resp.data.path;
-    if(!(path in __posts)){
-        __posts[path] = resp;
-    }
+function show_post(resp, fresh){
+    console.log(resp);
     if(resp.meta.status == 404){
         location.href='err.404.html#'+location.pathname;
     }
-    post = resp.data;
+    var path = resp.data.path;
+    if(fresh && !!localStorage){
+        localStorage[path] = JSON.stringify(resp);
+        localStorage[path+'.time'] = (new Date()).toISOString();
+    }
+    var post = resp.data;
     if(_query_item){
         show_post_meta(post, false);
     }
@@ -112,13 +117,27 @@ function show_post(resp){
 }
 
 function query_item(path){
-    if(path in __posts){
-        show_post(__posts[path]);
+    var el = document.createElement('script');
+    el.src = path_prefix+path+path_suffix;
+    $html.appendChild(el);
+    setTimeout(function(){$html.removeChild(el);},10000);
+}
+
+function query_item_cache(path){
+    if(!!localStorage){
+        query_item(path);
+    }
+    var post_time_str = localStorage[path+'.time'];
+    if(!!post_time_str){
+        var post_time = new Date(post_time_str);
+        var now_time = new Date();
+        if(now_time - post_time > 1000*60*__cache_minute){
+            query_item(path);
+        }else{
+            show_post(JSON.parse(localStorage[path]), false);                
+        }
     }else{
-        var el = document.createElement('script');
-        el.src = path_prefix+path+path_suffix;
-        $html.appendChild(el);
-        setTimeout(function(){$html.removeChild(el);},10000);
+        query_item(path);
     }
 }
 
@@ -129,18 +148,36 @@ function query_list(path){
     setTimeout(function(){$html.removeChild(el);},10000);
 }
 
+function query_list_cache(path){
+    if(!!localStorage){
+        query_list(path);
+    }
+    var list_time_str = localStorage['list_time'];
+    if(!!list_time_str){
+        var list_time = new Date(list_time_str);
+        var now_time = new Date();
+        if(now_time - list_time > 1000*60*__cache_minute){
+            query_list(path);
+        }else{
+            list_post(JSON.parse(localStorage['list_cache']), false);
+        }
+    }else{
+        query_list(path);
+    }
+}
+
 function page_load(){
     $('.pager .next').click(function(){next_page();});
     $('.pager .prev').click(function(){prev_page();});
     if(_query_item){
-        query_item(_query_path);
+        query_item_cache(_query_path);
     }else{
-        query_list(_query_path);
+        query_list_cache(_query_path);
     }
 }
 
-window.__list = function(o){ cache_list(o); };
-window.__post = function(o){ show_post(o); };
+window.__list = function(o){ list_post(o, true); };
+window.__post = function(o){ show_post(o, true); };
 
 page_load();
 
