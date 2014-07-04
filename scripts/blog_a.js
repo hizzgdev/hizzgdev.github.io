@@ -209,7 +209,6 @@ var path_suffix = "?callback=__post"
 var page_size = 3;
 
 var $html = document.getElementsByTagName('html')[0];
-var $loading = document.getElementById('loading');
 var $container = document.getElementById('blog_list');
 var $template = document.getElementById('blog_item_template');
 
@@ -260,7 +259,7 @@ function show_list(page){
     var max = Math.min(offset+page_size,__all_len)
     var post = null;
     if(_first_load){
-        $loading.parentNode.removeChild($loading);
+        $('#loading').remove();
     }
     for(var i=min;i<max;i++){
         post = __all[i];
@@ -280,7 +279,7 @@ function show_post_meta(post, inlist){
     if(inlist){
         $('.article-heading h3 a',el).text(post_name).attr('href','/'+post.path.replace(/\.md$/,'.html'));
     }else{
-        $loading.parentNode.removeChild($loading);
+        $('#loading').remove();
         $('.pager').remove();
         $('.article-heading h3',el).text(post_name);
     }
@@ -288,7 +287,6 @@ function show_post_meta(post, inlist){
 }
 
 function show_post(resp, fresh){
-    console.log(resp);
     if(resp.meta.status == 404){
         location.href='err.404.html#'+location.pathname;
     }
