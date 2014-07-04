@@ -118,7 +118,6 @@ function query_item(path){
     var el = document.createElement('script');
     el.src = path_prefix+path+path_suffix;
     $html.appendChild(el);
-    setTimeout(function(){$html.removeChild(el);},10000);
 }
 
 function query_item_cache(path){
@@ -143,7 +142,6 @@ function query_list(path){
     var el = document.createElement('script');
     el.src = path_prefix+path+"?callback=__list";
     $html.appendChild(el);
-    setTimeout(function(){$html.removeChild(el);},10000);
 }
 
 function query_list_cache(path){
