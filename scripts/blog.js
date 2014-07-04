@@ -177,7 +177,7 @@ function query_list_cache(path){
 
 function disqus_reset(){
     if(typeof DISQUS != 'undefined'){
-        DISQUS.reset();
+        DISQUS.reset({reload:true});
     }
 }
 
