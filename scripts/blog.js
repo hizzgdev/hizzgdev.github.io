@@ -133,7 +133,7 @@ function query_item(path){
 }
 
 function query_item_cache(path){
-    if(!!localStorage){
+    if(!localStorage){
         query_item(path);
     }else{
         var post_time_str = localStorage[path+'.time'];
@@ -156,7 +156,7 @@ function query_list(path){
 }
 
 function query_list_cache(path){
-    if(!!localStorage){
+    if(!localStorage){
         query_list(path);
     }else{
         var list_time_str = localStorage['list_time'];
