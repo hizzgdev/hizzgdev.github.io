@@ -277,11 +277,18 @@ function show_post_meta(post, inlist){
     var post_date = post.name.substr(0,10);
     var post_name = post.name.substr(11).replace(/-/g,' ').replace(/\.md$/,'');
     if(inlist){
-        $('.article-heading h3 a',el).text(post_name).attr('href','/'+post.path.replace(/\.md$/,'.html'));
+        var post_url = '/'+post.path.replace(/\.md$/,'.html');
+        $('.article-heading h3 a',el).text(post_name).attr('href', post_url);
+        $('.panel-footer a.comment',el).attr('href', post_url+'#disqus_thread');
     }else{
         $('#loading').remove();
         $('.pager').remove();
         $('.article-heading h3',el).text(post_name);
+        $('.panel-footer a.comment',el).remove();
+        var disqus_thread_el = document.createElement('div');
+        disqus_thread_el.id = 'disqus_thread';
+        disqus_thread_el.className = 'panel-footer';
+        el.appendChild(disqus_thread_el);
     }
     $('span.date',el).text(post_date);
 }
