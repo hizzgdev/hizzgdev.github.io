@@ -82,7 +82,6 @@ function show_list(page){
 }
 
 function show_post_meta(post, inlist){
-    console.log(post);
     var el = $template.cloneNode(true);
     el.id = 'blog_'+post.sha;
     $container.appendChild(el);
@@ -178,6 +177,9 @@ function query_list_cache(path){
 function disqus_reset(){
     if(typeof DISQUS != 'undefined'){
         DISQUS.reset({reload:true});
+    }
+    if(typeof DISQUSWIDGETS != 'undefined'){
+        DISQUSWIDGETS.getCount();
     }
 }
 
