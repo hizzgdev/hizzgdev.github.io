@@ -123,18 +123,19 @@ function query_item(path){
 function query_item_cache(path){
     if(!!localStorage){
         query_item(path);
-    }
-    var post_time_str = localStorage[path+'.time'];
-    if(!!post_time_str){
-        var post_time = new Date(post_time_str);
-        var now_time = new Date();
-        if(now_time - post_time > 1000*60*__cache_minute){
-            query_item(path);
-        }else{
-            show_post(JSON.parse(localStorage[path]), false);                
-        }
     }else{
-        query_item(path);
+        var post_time_str = localStorage[path+'.time'];
+        if(!!post_time_str){
+            var post_time = new Date(post_time_str);
+            var now_time = new Date();
+            if(now_time - post_time > 1000*60*__cache_minute){
+                query_item(path);
+            }else{
+                show_post(JSON.parse(localStorage[path]), false);                
+            }
+        }else{
+            query_item(path);
+        }
     }
 }
 
@@ -147,18 +148,19 @@ function query_list(path){
 function query_list_cache(path){
     if(!!localStorage){
         query_list(path);
-    }
-    var list_time_str = localStorage['list_time'];
-    if(!!list_time_str){
-        var list_time = new Date(list_time_str);
-        var now_time = new Date();
-        if(now_time - list_time > 1000*60*__cache_minute){
-            query_list(path);
-        }else{
-            list_post(JSON.parse(localStorage['list_cache']), false);
-        }
     }else{
-        query_list(path);
+        var list_time_str = localStorage['list_time'];
+        if(!!list_time_str){
+            var list_time = new Date(list_time_str);
+            var now_time = new Date();
+            if(now_time - list_time > 1000*60*__cache_minute){
+                query_list(path);
+            }else{
+                list_post(JSON.parse(localStorage['list_cache']), false);
+            }
+        }else{
+            query_list(path);
+        }
     }
 }
 
