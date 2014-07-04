@@ -365,7 +365,7 @@ function query_list_cache(path){
 }
 
 function disqus_reset(){
-    if(!!DISQUS){
+    if(typeof DISQUS != 'undefined'){
         DISQUS.reset();
     }
 }
@@ -374,11 +374,11 @@ function page_load(){
     $('.pager .next').click(function(){next_page();});
     $('.pager .prev').click(function(){prev_page();});
     if(_query_item){
-        query_item_cache(_query_path);
         script_inject('//hizzgdev.disqus.com/embed.js');
+        query_item_cache(_query_path);
     }else{
-        query_list_cache(_query_path);
         script_inject('//hizzgdev.disqus.com/count.js');
+        query_list_cache(_query_path);
     }
 }
 
