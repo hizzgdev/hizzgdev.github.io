@@ -64,9 +64,9 @@ function show_list(page){
     var prev = _page + 1;
     var next = _page - 1;
     if(prev <= __page_total){
-        $('.pager .prev').attr('href','/blog/'+prev);
+        $('.pager .previous').attr('href','/blog/'+prev);
     }else{
-        $('.pager .prev').removeAttr('href');
+        $('.pager .previous').removeAttr('href');
     }
     if(next > 0){
         $('.pager .next').attr('href','/blog/'+next).show();
@@ -179,8 +179,6 @@ function disqus_reset(){
 }
 
 function page_load(){
-    $('.pager .next').click(function(){next_page();});
-    $('.pager .prev').click(function(){prev_page();});
     if(_query_item){
         script_inject('//hizzgdev.disqus.com/embed.js');
         query_item_cache(_query_path);
