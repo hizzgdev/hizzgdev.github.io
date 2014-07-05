@@ -64,14 +64,16 @@ function show_list(page){
     var prev = _page + 1;
     var next = _page - 1;
     if(prev <= __page_total){
-        $('.pager .previous').attr('href','/blog/'+prev);
+        $('.pager .previous').removeClass('disabled');
+        $('.pager .previous a').attr('href','/blog/'+prev);
     }else{
-        $('.pager .previous').removeAttr('href');
+        $('.pager .previous').addClass('disabled');
+        $('.pager .previous a').removeAttr('href');
     }
     if(next > 0){
-        $('.pager .next').attr('href','/blog/'+next).show();
+        $('.pager .next a').attr('href','/blog/'+next).show();
     }else{
-        $('.pager .next').hide();
+        $('.pager .next a').hide();
     }
     disqus_reset();
 }
