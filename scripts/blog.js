@@ -3,9 +3,13 @@ var __cache_minute = 20;
 var __query_path = location.pathname;
 var _query_path = 'blog'
 var _query_item = false;
+var _page = 0;
+
 if(/\/blog\/.*\.html$/.test(__query_path)){
     _query_path = __query_path.substr(1).replace(/\.html$/,'.md');
     _query_item = true;
+}else{
+    _page = parseInt(_query_path.substr(6)) || 1;
 }
 
 //_query_item = true;
@@ -25,7 +29,6 @@ var $template = document.getElementById('blog_item_template');
 
 var __all = null;
 var __all_len = 0;
-var __page = 0;
 var __page_total = 1;
 
 var _first_load = true;
@@ -38,30 +41,10 @@ function list_post(resp, fresh){
     __all = resp.data.reverse();
     __all_len = __all.length;
     __page_total = Math.ceil(__all_len/page_size);
-    show_list(1);
-}
-
-function prev_page(){
-    var prev = __page + 1;
-    if(prev <= __page_total){
-        show_list(prev);
-    }
-}
-
-function next_page(){
-    var prev = __page - 1;
-    if(prev > 0){
-        show_list(prev);
-    }
+    show_list(_page);
 }
 
 function show_list(page){
-    if(__page == page){
-        return;
-    }else{
-        __page = page;
-    }
-
     if(!_first_load){
         $container.innerHTML = '';
     }
@@ -78,6 +61,18 @@ function show_list(page){
         query_item_cache(post.path);
     }
     _first_load = false;
+    var prev = _page + 1;
+    var next = _page - 1;
+    if(prev <= __page_total){
+        $('.pager .prev').attr('href','/blog/'+prev);
+    }else{
+        $('.pager .prev').removeAttr('href');
+    }
+    if(next > 0){
+        $('.pager .next').attr('href','/blog/'+next).show();
+    }else{
+        $('.pager .next').hide();
+    }
     disqus_reset();
 }
 
