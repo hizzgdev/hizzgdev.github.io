@@ -9,7 +9,7 @@ if(/\/blog\/.*\.html$/.test(__query_path)){
     _query_path = __query_path.substr(1).replace(/\.html$/,'.md');
     _query_item = true;
 }else{
-    _page = parseInt(_query_path.substr(6)) || 1;
+    _page = parseInt(__query_path.substr(6)) || 1;
 }
 
 //_query_item = true;
