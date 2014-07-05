@@ -92,7 +92,7 @@ function show_post_meta(post, inlist){
         $('#loading').remove();
         $('.pager').remove();
         $('.article-heading h3',el).text(post_name);
-        $('.panel-footer a.comment',el).remove();
+        $('.panel-footer',el).remove();
         var disqus_thread_el = document.createElement('div');
         disqus_thread_el.id = 'disqus_thread';
         disqus_thread_el.className = 'panel-footer';
