@@ -8,7 +8,7 @@ header{border-bottom:solid 2px #ccc;padding-top:50px;}
 footer{border-top:solid 2px #ccc;padding-top:10px;text-align:right;}
 h1{font-size:2em;}
 h1 span{float:left;margin-right:20px;}
-p{padding-left:6px;}
+p{font-size:1.25em;padding-left:6px;}
 .clear{display:block;clear:both;}
 .main{background-color:rgba(255,255,255,0.5);padding-top:20px;padding-bottom:20px;margin:0;}
 ul{margin:0;min-width:160px;float:left;}

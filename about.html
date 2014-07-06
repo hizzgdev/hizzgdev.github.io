@@ -3,29 +3,48 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="/styles/common.css" />
+    <link rel="stylesheet" href="/styles/markdown.css" />
     <!--[if lt IE 9]>
-    <script src="//apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
-    <script src="//apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <title>About me - 张志刚 | Zhigang Zhang</title>
+    <title>About me - Zhigang Zhang</title>
 </head>
 <body>
   <div class="container">
+    <nav>
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/works.html">Works</a>
+      <a class="active" href="/about.html">About me</a>
+    </nav>
     <header>
-      <h1><span>张志刚</span><span class="en">Zhigang Zhang</span><br class="clear"/></h1>
-      <p>An oriental post-80s programmer.</p>
+      <h1>Zhigang Zhang's Profile</h1>
+      <p>just passed the turing test</p>
     </header>
-    <div class="main">
-      <ul>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/works.html">Works</a></li>
-        <li><a href="/about.html">About me</a></li>
-      </ul>
-      <br class="clear"/>
+    <div class="block-about">
+      <article>
+        <header>
+          <h2>张志刚</h2>
+        </header>
+        <section class="md">
+          <img src="https://38.media.tumblr.com/avatar_9130de62b355_128.png" alt="张志刚,Zhigang Zhang" />
+        </section>
+        <section class="zh md">
+          <p>80后程序员</p>
+        </section>
+        <section class="en md">
+          <p>post-80s programmer</p>
+        </section>
+        <footer>
+          <p>LastUpdated: <time datetime="2014-07-07">2014-07-07</time></p>  
+        </footer>
+      </article>
     </div>
+    <br class="clear"/>
     <footer>
-      2014 &copy; hizzgdev.github.io
+      <p>2014 &copy; hizzgdev.github.io</p>
     </footer>
   </div>
 </body>

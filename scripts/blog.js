@@ -77,7 +77,7 @@ function show_list(page){
     }else{
         $q('.pager .next').className='hidden';
     }
-    disqus_reset();
+    if(!_query_item){disqus_load_count();}
 }
 
 function show_post_meta(post, inlist){
@@ -121,12 +121,13 @@ function show_post(resp, fresh){
     }
     var el_id = '#blog_'+post.sha;
     $q(el_id+' section').innerHTML=markdown.toHTML(Base64.decode(post.content));
-    disqus_reset();
+    if(_query_item){disqus_load_embed();}
 }
 
-function script_inject(path){
+function script_inject(path, async){
     var el = document.createElement('script');
     el.src = path;
+    if(!!async){el.async=true;}
     $html.appendChild(el);
 }
 
@@ -176,21 +177,18 @@ function query_list_cache(path){
     }
 }
 
-function disqus_reset(){
-    if(typeof DISQUS != 'undefined'){
-        DISQUS.reset({reload:true});
-    }
-    if(typeof DISQUSWIDGETS != 'undefined'){
-        DISQUSWIDGETS.getCount();
-    }
+function disqus_load_embed(){
+    script_inject('//hizzgdev.disqus.com/embed.js',true);
+}
+
+function disqus_load_count(){
+    script_inject('//hizzgdev.disqus.com/count.js',true);
 }
 
 function page_load(){
     if(_query_item){
-        script_inject('//hizzgdev.disqus.com/embed.js');
         query_item_cache(_query_path);
     }else{
-        script_inject('//hizzgdev.disqus.com/count.js');
         query_list_cache(_query_path);
     }
 }
