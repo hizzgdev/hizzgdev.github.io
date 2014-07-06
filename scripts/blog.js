@@ -21,11 +21,14 @@ var path_suffix = "?callback=__post"
 // path_prefix = "https://api.github.com/repos/sneezry/sneezry.github.com/contents/"
 // _query_path = "md"
 
+var $ = function(id){return document.getElementById(id);};
+var $q = function(s,c){return document.querySelector(s,c);}
+
 var page_size = 3;
 
 var $html = document.getElementsByTagName('html')[0];
-var $container = document.getElementById('blog_list');
-var $template = document.getElementById('blog_item_template');
+var $container = $('blog_list');
+var $template = $('blog_item_template');
 
 var __all = null;
 var __all_len = 0;
@@ -53,7 +56,7 @@ function show_list(page){
     var max = Math.min(offset+page_size,__all_len)
     var post = null;
     if(_first_load){
-        $('#loading').remove();
+        $('loading').className = 'hidden';
     }
     for(var i=min;i<max;i++){
         post = __all[i];
@@ -64,41 +67,44 @@ function show_list(page){
     var prev = _page + 1;
     var next = _page - 1;
     if(prev <= __page_total){
-        $('.pager .previous').removeClass('disabled');
-        $('.pager .previous a').attr('href','/blog/'+prev);
+        $q('.pager .prev a').href='/blog/'+prev;
     }else{
-        $('.pager .previous').addClass('disabled');
-        $('.pager .previous a').removeAttr('href');
+        $q('.pager .prev').className='prev disabled';
+        $q('.pager .prev a').removeAttribute('href');
     }
     if(next > 0){
-        $('.pager .next a').attr('href','/blog/'+next).show();
+        $q('.pager .next a').href='/blog/'+next;
     }else{
-        $('.pager .next a').hide();
+        $q('.pager .next a').className='hidden';
     }
     disqus_reset();
 }
 
 function show_post_meta(post, inlist){
     var el = $template.cloneNode(true);
-    el.id = 'blog_'+post.sha;
+    var elid = 'blog_'+post.sha;
+    el.id = elid;
     $container.appendChild(el);
     var post_date = post.name.substr(0,10);
     var post_name = post.name.substr(11).replace(/-/g,' ').replace(/\.md$/,'');
     if(inlist){
         var post_url = '/'+post.path.replace(/\.md$/,'.html');
-        $('.article-heading h3 a',el).text(post_name).attr('href', post_url);
-        $('.panel-footer a.comment',el).attr('href', post_url+'#disqus_thread');
+        var a = $q('#'+elid+' h2 a');
+            a.innerHTML=post_name;
+            a.href=post_url;
+        var b = $q('#'+elid+' footer a.comment');
+            b.href=post_url+'#disqus_thread';
     }else{
-        $('#loading').remove();
-        $('.pager').remove();
-        $('.article-heading h3',el).text(post_name);
-        $('.panel-footer',el).remove();
+        $('loading').className = 'hidden';
+        $q('.pager').className = 'hidden';
+        $q('#'+elid+' .article-heading h3').innerHTML=post_name;
+        $q('#'+elid+' .panel-footer').className='hidden';;
         var disqus_thread_el = document.createElement('div');
         disqus_thread_el.id = 'disqus_thread';
         disqus_thread_el.className = 'panel-footer';
         el.appendChild(disqus_thread_el);
     }
-    $('span.date',el).text(post_date);
+    $q('#'+elid+' footer time').innerHTML=post_date;
 }
 
 function show_post(resp, fresh){
@@ -115,7 +121,7 @@ function show_post(resp, fresh){
         show_post_meta(post, false);
     }
     var el_id = '#blog_'+post.sha;
-    $(el_id+' .article-body').html(markdown.toHTML(Base64.decode(post.content)));
+    $q(el_id+' section').innerHTML=markdown.toHTML(Base64.decode(post.content));
     disqus_reset();
 }
 

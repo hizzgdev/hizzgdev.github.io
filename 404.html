@@ -4,8 +4,7 @@
     <script src="/scripts/404.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="//oss.maxcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/styles/blog.css" />
+    <link rel="stylesheet" href="/styles/common.css" />
     <link rel="stylesheet" href="/styles/loading.css" />
     <link rel="stylesheet" href="/styles/markdown.css" />
     <!--[if lt IE 9]>
@@ -15,81 +14,79 @@
     <title>Zhigang Zhang's Blog</title>
 </head>
 <body>
+  <nav>
+    <div class="container">
+      <a href="/">Home</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/works/">Works</a>
+      <a href="/about/">About me</a>
+    </div>
+  </nav>
   <div class="container">
     <header>
-      <h2>Zhigang Zhang's Blog</h2>
+      <h1>Zhigang Zhang's Blog</h1>
       <p>An oriental post-80s programmer's talk</p>
     </header>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-8">
-        <div id="loading" class="panel panel-default">
-          <div class="panel-body article-body md">
-            <div>
-              <div class="loading" index="0"></div>
-              <div class="loading" index="1"></div>
-              <div class="loading" index="2"></div>
-              <div class="loading" index="3"></div>
-              <div class="loading" index="4"></div>
-            </div>
-          </div>
-        </div>
-        <div id="blog_list">
-        </div>
-        <!--loop start-->
-        <div id="blog_item_template" class="panel panel-default">
-          <div class="panel-heading article-heading">
-            <h3><a href="#">#</a></h3>
-          </div>
-          <div class="panel-body article-body md">
-              <div class="loading" index="0"></div>
-              <div class="loading" index="1"></div>
-              <div class="loading" index="2"></div>
-              <div class="loading" index="3"></div>
-              <div class="loading" index="4"></div>
-          </div>
-          <div class="panel-footer">
-             <span class="text-muted date"></span><span><a class="comment" href="#">Comment</a></span>
-          </div>
-          <div class="hidden">
-              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-          </div>
-        </div>
-        <!--loop end-->
-        <ul class="pager">
-          <li class="previous"><a href="#">&laquo;更早的内容</a></li>
-          <li class="next"><a href="#">更新的内容&raquo;</a></li>
-        </ul>
-      </div>
-      <div class="col-xs-12 col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-body nav-side">
-            <a href="/">Home</a>
-            <a href="/blog/">Blog</a>
-            <a href="/works/">Works</a>
-            <a href="/about/">About me</a>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h4>历史文章</h4>
-            <ul class="list-unstyled side-list">
-              <!--loop start-->
-              <!--loop end-->
-            </ul>
-          </div>
-        </div>
-      </div>
+    <div id="loading">
+      <div class="loading" index="0"></div>
+      <div class="loading" index="1"></div>
+      <div class="loading" index="2"></div>
+      <div class="loading" index="3"></div>
+      <div class="loading" index="4"></div>
+      <br class="clear"/>
     </div>
+    <div class="block-main">
+      <div id="blog_list">
+      </div>
+      <!--loop start-->
+      <article id="blog_item_template">
+        <header>
+          <h2><a href="#">#</a></h2>
+        </header>
+        <section class="md">
+          <div class="loading" index="0"></div>
+          <div class="loading" index="1"></div>
+          <div class="loading" index="2"></div>
+          <div class="loading" index="3"></div>
+          <div class="loading" index="4"></div>
+        </section>
+        <footer>
+          <p>Posted: <time>1900-01-01</time><a class="comment" href="#">Comment</a></p>  
+        </footer>
+      </article>
+      <!--loop end-->
+      <ul class="pager">
+        <li class="prev"><a href="#">&laquo;更早的内容</a></li>
+        <li class="next"><a href="#">更新的内容&raquo;</a></li>
+        <br class="clear"/>
+      </ul>
+    </div>
+    <div class="block-aside">
+      <article id="blog_item_template">
+        <header>
+          <h2>搜索</h2>
+        </header>
+        <section class="md">
+          <div class="loading" index="0"></div>
+          <div class="loading" index="1"></div>
+          <div class="loading" index="2"></div>
+          <div class="loading" index="3"></div>
+          <div class="loading" index="4"></div>
+        </section>
+        <footer>
+          <p>Posted: <time>1900-01-01</time><a class="comment" href="#">Comment</a></p>  
+        </footer>
+      </article>
+    </div>
+    <br class="clear"/>
     <footer>
       <p>2014 &copy; hizzgdev.github.io</p>
     </footer>
   </div>
+  <div class="hidden">
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
 </body>
-<script src="//oss.maxcdn.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="//oss.maxcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="/scripts/base64.js"></script>
 <script src="/scripts/markdown.min.js"></script>
 <script src="/scripts/blog.js"></script>
