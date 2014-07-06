@@ -11,10 +11,12 @@ h1,h2,h3{margin-top:20px;margin-bottom:10px;}
 p{margin:0 0 10px;}
 
 @media (max-width:768px){
+    body{font-size:14px;}
     .block-main{width:100%;}
     .block-aside{width:100%;}
 }
 @media (min-width:768px){
+    body{font-size:16px;}
     .container{width:750px;}
     .block-main{width:66.7%;padding-right:15px;}
     .block-aside{width:33.3%;padding-left:15px;}
@@ -28,11 +30,11 @@ p{margin:0 0 10px;}
 .block-main, .block-aside{float:left;}
 .container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;}
 
-nav{display:none;background:#bbb;background-color:rgba(0,0,0,0.3);padding:8px 0;}
-nav a{color:#fff;text-decoration:none;padding:4px 6px;border-radius:5px;}
-nav a:hover, nav a.active{color:#1d5cc2;background-color:#eee;}
+nav{padding:8px 0;text-align:right;}
+nav a{color:#1d5cc2;background:#fff;text-decoration:none;padding:4px 8px;border-radius:5px;margin:0 3px;}
+nav a:hover, nav a.active{color:#fff;background-color:#1d5cc2;}
 
-header{border-bottom:solid 1px #eee;padding:30px 0 10px 0;}
+header{border-bottom:solid 1px #eee;padding:10px 0 10px 0;}
 header p{font-size:1.25em;}
 
 footer{padding:15px; border-top:solid 1px #ccc;}
