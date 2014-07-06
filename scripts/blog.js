@@ -75,7 +75,7 @@ function show_list(page){
     if(next > 0){
         $q('.pager .next a').href='/blog/'+next;
     }else{
-        $q('.pager .next a').className='hidden';
+        $q('.pager .next').className='hidden';
     }
     disqus_reset();
 }
