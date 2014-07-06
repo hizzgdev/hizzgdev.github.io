@@ -97,8 +97,7 @@ function show_post_meta(post, inlist){
     }else{
         $('loading').className = 'hidden';
         $q('.pager').className = 'hidden';
-        $q('#'+elid+' .article-heading h3').innerHTML=post_name;
-        $q('#'+elid+' .panel-footer').className='hidden';;
+        $q('#'+elid+' h2').innerHTML=post_name;
         var disqus_thread_el = document.createElement('div');
         disqus_thread_el.id = 'disqus_thread';
         disqus_thread_el.className = 'panel-footer';
