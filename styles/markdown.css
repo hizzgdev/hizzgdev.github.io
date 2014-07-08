@@ -14,6 +14,7 @@
 .md p, .md blockquote, .md ul, .md ol, .md dl, .md li, .md table, .md pre { margin: 5px 0; color:#333;}
 .md hr { border: 0 none; color: #ccc; height: 4px; padding: 0; }
 .md p { line-height:26px; margin-bottom: 10px; font-size:16px; text-indent:32px;}
+.en p { margin-left:32px; text-indent:0;}
 .md li p.first { display: inline-block; }
 .md ul, .md ol { padding-left: 30px; }
 .md ul :first-child, .md ol :first-child { margin-top: 0; }
