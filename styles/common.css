@@ -20,6 +20,8 @@ p{margin:0 0 10px;}
     body{font-size:16px;}
     nav{text-align:right;}
     .container{width:750px;}
+    .works .container{width:750px;}
+    .about .container{width:750px;}
     .block-blog-main{width:66.7%;padding-right:15px;}
     .block-blog-aside{width:33.3%;padding-left:15px;}
 }
@@ -36,7 +38,7 @@ nav{padding:8px 0;}
 nav a{color:#1d5cc2;background:#fff;text-decoration:none;padding:4px 8px;border-radius:5px;margin:0 3px 0 0;}
 nav a:hover, nav a.active{color:#fff;background-color:#1d5cc2;}
 
-header{border-bottom:solid 1px #eee;padding:10px 0 10px 0;}
+header{padding:10px 0 10px 0;}
 header p{font-size:1.25em;}
 
 footer{padding:15px; border-top:solid 1px #ccc;}
@@ -63,5 +65,18 @@ article img{display: block; height: auto; max-width: 100%;}
 
 #blog_item_template{display:none;}
 
+.disqus-widget{border:solid 1px #ddd;border-radius:4px;background-color:#fff;margin-bottom:20px;padding:15px 30px;}
+.disqus-widget header{border-bottom:solid 1px #eee;padding:0 0 3px;margin:0;}
+.disqus-widget header h2{font-size:1.25em;}
+.disqus-widget footer{padding:8px 0 0;border:none;font-size:0.875em;}
+.disqus-widget footer a{color:#ccc;}
+.disqus-widget ul{padding:0;margin:0;}
+.disqus-widget li.dsq-widget-item{border-bottom:solid 1px #eee;padding:15px 0;margin:0;}
+.disqus-widget li.dsq-widget-item:hover{background-color:#fcfcfc;}
+.dsq-widget-user{color:#455c85;text-decoration:none;}
+.dsq-widget-user:hover{text-decoration:underline;}
+.dsq-widget-comment{display:block;padding:8px 10px;}
+.dsq-widget-meta{text-align:right;}
+.dsq-widget-meta a{text-decoration:none;color:#455c85;}
+.dsq-widget-meta a:hover{text-decoration:underline;}
 
- 
