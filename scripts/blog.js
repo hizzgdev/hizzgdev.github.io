@@ -24,7 +24,7 @@ var path_suffix = "?callback=__post"
 var $ = function(id){return document.getElementById(id);};
 var $q = function(s,c){return document.querySelector(s,c);}
 
-var page_size = 3;
+var page_size = 7;
 
 var $html = document.getElementsByTagName('html')[0];
 var $container = $('blog_list');
