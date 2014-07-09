@@ -98,6 +98,8 @@ function show_post_meta(post, inlist){
         $('loading').className = 'hidden';
         $q('.pager').className = 'hidden';
         $q('#'+elid+' h2').innerHTML=post_name;
+        $q('title').innerHTML=post_name+' - Zhigang Zhang\'s blog';
+        window.disqus_title = post_name;
         var disqus_thread_el = document.createElement('div');
         disqus_thread_el.id = 'disqus_thread';
         disqus_thread_el.className = 'panel-footer';
