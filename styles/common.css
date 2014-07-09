@@ -59,6 +59,8 @@ article img{display: block; height: auto; max-width: 100%;}
 .pager a{padding:6px 15px;border:solid 1px #ddd;border-radius:15px;display:block;background:#fff;color:#428bca;text-decoration:none;}
 .pager a:hover{background:#eee;}
 
+.avatars{margin-left:10px;}
+
 .disabled, .disabled a{color:#777;cursor:not-allowed;}
 .clear{clear:both; width:1px;height:1px;display:block;}
 .hidden{display:none;}
