@@ -1,203 +1,188 @@
 (function(){
+"use strict"
 var __cache_minute = 20;
 var __query_path = location.pathname;
-var _query_path = 'blog'
-var _query_item = false;
-var _page = 0;
+var __md_path = null;
+var __is_list = false;
+var __is_blog = false;
+var __is_other  = false;
 
 if(/\/blog\/.*\.html$/.test(__query_path)){
-    _query_path = __query_path.substr(1).replace(/\.html$/,'.md');
-    _query_item = true;
+    __is_blog = true;
+    __md_path = __query_path.substr(1).replace(/\.html$/,'.md');
+}else if(/\/blog\.html$/.test(__query_path)){
+    __is_list = true;
 }else{
-    _page = parseInt(__query_path.substr(6)) || 1;
+    __is_other = true;
 }
 
-//_query_item = true;
-//_query_path = 'blog/2014-07-01_Hello-World.html'.replace(/\.html$/,'.md');
-
 var path_prefix = "https://api.github.com/repos/hizzgdev/hizzgdev.github.io/contents/"
-var path_suffix = "?callback=__post"
+var path_suffix = "?callback="
 
 // path_prefix = "https://api.github.com/repos/sneezry/sneezry.github.com/contents/"
 // _query_path = "md"
 
 var $ = function(id){return document.getElementById(id);};
 var $q = function(s,c){return document.querySelector(s,c);}
-
-var page_size = 7;
+var $c = function(t){return document.createElement(t);}
 
 var $html = document.getElementsByTagName('html')[0];
-var $container = $('blog_list');
-var $template = $('blog_item_template');
 
-var __all = null;
-var __all_len = 0;
-var __page_total = 1;
-
-var _first_load = true;
-
-function list_post(resp, fresh){
-    if(fresh && !!localStorage){
-        localStorage['blog/list.time'] = (new Date()).toISOString();
-        localStorage['blog/list'] = JSON.stringify(resp);
-    }
-    __all = resp.data.reverse();
-    __all_len = __all.length;
-    __page_total = Math.ceil(__all_len/page_size);
-    show_list(_page);
-}
-
-function show_list(page){
-    if(!_first_load){
-        $container.innerHTML = '';
-    }
-    var offset = (page-1)*page_size;
-    var min = Math.min(offset,__all_len);
-    var max = Math.min(offset+page_size,__all_len)
-    var post = null;
-    if(_first_load){
-        $('loading').className = 'hidden';
-    }
-    for(var i=min;i<max;i++){
-        post = __all[i];
-        show_post_meta(post, true);
-        query_item_cache(post.path);
-    }
-    _first_load = false;
-    var prev = _page + 1;
-    var next = _page - 1;
-    if(prev <= __page_total){
-        $q('.pager .prev a').href='/blog/'+prev;
-    }else{
-        $q('.pager .prev').className='prev disabled';
-        $q('.pager .prev a').removeAttribute('href');
-    }
-    if(next > 0){
-        $q('.pager .next a').href='/blog/'+next;
-    }else{
-        $q('.pager .next').className='hidden';
-    }
-    if(!_query_item){disqus_load_count();}
-}
-
-function show_post_meta(post, inlist){
-    var el = $template.cloneNode(true);
-    var elid = 'blog_'+post.sha;
-    el.id = elid;
-    $container.appendChild(el);
-    var post_date = post.name.substr(0,10);
-    var post_name = post.name.substr(11).replace(/-/g,' ').replace(/\.md$/,'');
-    if(inlist){
-        var post_url = '/'+post.path.replace(/\.md$/,'.html');
-        var a = $q('#'+elid+' h2 a');
-            a.innerHTML=post_name;
-            a.href=post_url;
-        var b = $q('#'+elid+' footer a.comment');
-            b.href=post_url+'#disqus_thread';
-    }else{
-        $('loading').className = 'hidden';
-        $q('.pager').className = 'hidden';
-        $q('#'+elid+' h2').innerHTML=post_name;
-        $q('title').innerHTML=post_name+' - Zhigang Zhang\'s blog';
-        window.disqus_title = post_name;
-        var disqus_thread_el = document.createElement('div');
-        disqus_thread_el.id = 'disqus_thread';
-        disqus_thread_el.className = 'panel-footer';
-        el.appendChild(disqus_thread_el);
-    }
-    $q('#'+elid+' footer time').innerHTML=post_date;
-}
-
-function show_post(resp, fresh){
-    if(resp.meta.status == 404){
-        location.href='err.404.html#'+location.pathname;
-    }
-    var path = resp.data.path;
-    if(fresh && !!localStorage){
-        localStorage[path] = JSON.stringify(resp);
-        localStorage[path+'.time'] = (new Date()).toISOString();
-    }
-    var post = resp.data;
-    if(_query_item){
-        show_post_meta(post, false);
-    }
-    var el_id = '#blog_'+post.sha;
-    $q(el_id+' section').innerHTML=markdown.toHTML(Base64.decode(post.content));
-    if(_query_item){disqus_load_embed();}
-}
-
-function script_inject(path, async){
+function script_inject(path,async){
     var el = document.createElement('script');
     el.src = path;
     if(!!async){el.async=true;}
     $html.appendChild(el);
 }
 
-function query_item(path){
-    script_inject(path_prefix+path+path_suffix);
+function github_jsonp(path,callback){
+    var url = path_prefix+path+path_suffix+callback;
+    script_inject(url);
 }
 
-function query_item_cache(path){
-    if(!localStorage){
-        query_item(path);
-    }else{
-        var post_time_str = localStorage[path+'.time'];
-        if(!!post_time_str){
-            var post_time = new Date(post_time_str);
-            var now_time = new Date();
-            if(now_time - post_time > 1000*60*__cache_minute){
-                query_item(path);
-            }else{
-                show_post(JSON.parse(localStorage[path]), false);                
-            }
-        }else{
-            query_item(path);
+// 404 begin
+function show_404(){
+    $q('title').innerHTML='Sorry, I lost myself - Zhigang Zhang';
+    $q('.container nav a.active').className='';
+    $q('header h1').innerHTML='Zhigang Zhang';
+    $q('header p').innerHTML='you got me there';
+    $q('article header h2').innerHTML=__query_path+' was not found';
+    $q('article section').innerHTML='<p>Sorry, the page you request can not be found.</p><p>you may go <a href="/">Home</a>. Thank you.</p>';
+    $q('article footer').className='hidden';
+}
+// 404 end
+
+// blog list begin
+function show_list(list){
+    var len = list.length;
+    var post_date_m_l = null;
+    var $list = $('blog_list');
+    var ul = null;
+    while(len--){
+        var post = list[len];
+        var post_date = post.name.substr(0,10);
+        var post_date_m = post_date.substr(0,7);
+        if(post_date_m != post_date_m_l){
+            post_date_m_l = post_date_m;
+            var li = $c('li');
+            ul = $c('ul');
+            $list.appendChild(li);
+            li.innerHTML = post_date_m.replace('-','.');
+            li.appendChild(ul);
         }
+        var post_name = post.name.substr(11).replace(/-/g,' ').replace(/\.md$/,'');
+        var post_url = '/'+post.path.replace(/\.md$/,'.html');
+        var li = $c('li');
+        li.innerHTML = '<span>'+post_date+'</span><span>»</span><a href="'+post_url+'">'+post_name+'</a>';
+        ul.appendChild(li);
     }
 }
 
-function query_list(path){
-    script_inject(path_prefix+path+"?callback=__list");
+function list_blog(resp, fresh){
+    $('loading').className = 'hidden';
+    if(fresh && !!localStorage){
+        localStorage['blog/list.time'] = (new Date()).toISOString();
+        localStorage['blog/list'] = JSON.stringify(resp);
+    }
+    show_list(resp.data);
 }
 
-function query_list_cache(path){
+function query_list(){
+    github_jsonp('blog','__list');
+}
+
+function query_list_cache(){
     if(!localStorage){
-        query_list(path);
+        query_list();
     }else{
         var list_time_str = localStorage['blog/list.time'];
         if(!!list_time_str){
             var list_time = new Date(list_time_str);
             var now_time = new Date();
             if(now_time - list_time > 1000*60*__cache_minute){
-                query_list(path);
+                query_list();
             }else{
-                list_post(JSON.parse(localStorage['blog/list']), false);
+                list_blog(JSON.parse(localStorage['blog/list']), false);
             }
         }else{
-            query_list(path);
+            query_list();
+        }
+    }
+}
+// blog list end
+
+// blog detail begin
+function disqus_load_embed(){
+    window.disqus_shortname = 'hizzgdev';
+    var disqus_thread_el = $c('div');
+    disqus_thread_el.id = 'disqus_thread';
+    disqus_thread_el.className = 'panel-footer';
+    $q('article').appendChild(disqus_thread_el);
+    script_inject('//hizzgdev.disqus.com/embed.js',true);
+}
+
+function show_detail(post){
+    var post_date = post.name.substr(0,10);
+    var post_name = post.name.substr(11).replace(/-/g,' ').replace(/\.md$/,'');
+    window.disqus_title = post_name;
+    $q('title').innerHTML=post_name+' - Zhigang Zhang\'s blog';
+    $q('article header h2').innerHTML=post_name;
+    $q('article section').innerHTML=markdown.toHTML(Base64.decode(post.content));
+    $q('article time').innerHTML=post_date;
+    disqus_load_embed();
+}
+
+function show_blog(resp, fresh){
+    if(resp.meta.status == 404){
+        show_404();
+        return;
+    }
+    var path = resp.data.path;
+    if(fresh && !!localStorage){
+        localStorage[path] = JSON.stringify(resp);
+        localStorage[path+'.time'] = (new Date()).toISOString();
+    }
+    show_detail(resp.data);
+}
+
+function query_item(){
+    github_jsonp(__md_path,'__blog');
+}
+
+function query_item_cache(){
+    if(!localStorage){
+        query_item();
+    }else{
+        var path=__md_path;
+        var post_time_str = localStorage[path+'.time'];
+        if(!!post_time_str){
+            var post_time = new Date(post_time_str);
+            var now_time = new Date();
+            if(now_time - post_time > 1000*60*__cache_minute){
+                query_item();
+            }else{
+                show_blog(JSON.parse(localStorage[path]), false);                
+            }
+        }else{
+            query_item();
         }
     }
 }
 
-function disqus_load_embed(){
-    script_inject('//hizzgdev.disqus.com/embed.js',true);
-}
-
-function disqus_load_count(){
-    script_inject('//hizzgdev.disqus.com/count.js',true);
-}
-
 function page_load(){
-    if(_query_item){
-        query_item_cache(_query_path);
-    }else{
-        query_list_cache(_query_path);
+    if(__is_list){
+        query_list_cache();
+    }
+    if(__is_blog){
+        query_item_cache();
+    }
+    if(__is_other){
+        show_404();
     }
 }
 
-window.__list = function(o){ list_post(o, true); };
-window.__post = function(o){ show_post(o, true); };
-window.disqus_shortname = 'hizzgdev';
+window.__list = function(o){ list_blog(o, true); };
+window.__blog = function(o){ show_blog(o, true); };
 
 page_load();
 

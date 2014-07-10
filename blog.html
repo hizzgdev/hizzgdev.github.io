@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/common.css" />
     <link rel="stylesheet" href="/styles/loading.css" />
-    <link rel="stylesheet" href="/styles/markdown.css" />
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -25,28 +24,21 @@
       <p>an idealist's cheap talk</p>
     </header>
     <div>
-      <article>
-        <header>
-          <h2></h2>
-        </header>
-        <section class="md">
+      <ul class="blog-list" id="blog_list">
+        <div id="loading">
           <div class="loading" index="0"></div>
           <div class="loading" index="1"></div>
           <div class="loading" index="2"></div>
           <div class="loading" index="3"></div>
           <div class="loading" index="4"></div>
-        </section>
-        <footer>
-          <p>Posted: <time>1900-01-01</time></p>  
-        </footer>
-      </article>
+          <br class="clear"/>
+        </div>
+      </ul>
     </div>
     <footer>
       <p>2014 &copy; hizzgdev.github.io</p>
     </footer>
   </div>
 </body>
-<script src="/scripts/base64.js"></script>
-<script src="/scripts/markdown.min.js"></script>
 <script src="/scripts/blog.js"></script>
 </html>

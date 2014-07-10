@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/common.css" />
     <link rel="stylesheet" href="/styles/loading.css" />
-    <link rel="stylesheet" href="/styles/markdown.css" />
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <title>Zhigang Zhang's Blog</title>
 </head>
-<body>
+<body class="blogindex">
   <div class="container">
     <nav>
       <a href="/">Home</a>
@@ -25,28 +24,20 @@
       <p>an idealist's cheap talk</p>
     </header>
     <div>
-      <article>
+      <div class="disqus-widget">
         <header>
-          <h2></h2>
+          <h2>最新评论</h2>
         </header>
-        <section class="md">
-          <div class="loading" index="0"></div>
-          <div class="loading" index="1"></div>
-          <div class="loading" index="2"></div>
-          <div class="loading" index="3"></div>
-          <div class="loading" index="4"></div>
-        </section>
+        <script src="http://hizzgdev.disqus.com/recent_comments_widget.js?num_items=36&hide_avatars=1&avatar_size=32&excerpt_length=200"></script>
         <footer>
-          <p>Posted: <time>1900-01-01</time></p>  
+          <a href="http://disqus.com/" target="_blank">Powered by Disqus</a>
         </footer>
-      </article>
+      </div>
     </div>
+    <br class="clear"/>
     <footer>
       <p>2014 &copy; hizzgdev.github.io</p>
     </footer>
   </div>
 </body>
-<script src="/scripts/base64.js"></script>
-<script src="/scripts/markdown.min.js"></script>
-<script src="/scripts/blog.js"></script>
 </html>
