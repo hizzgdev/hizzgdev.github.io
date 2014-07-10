@@ -129,6 +129,7 @@ function show_detail(post){
     $q('article header h2').innerHTML=post_name;
     $q('article section').innerHTML=markdown.toHTML(Base64.decode(post.content));
     $q('article time').innerHTML=post_date;
+    $q('article footer a').href='/'+post.path;
     disqus_load_embed();
 }
 
