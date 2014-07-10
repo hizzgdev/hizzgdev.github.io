@@ -57,13 +57,3 @@
 .md pre { background-color: #f8f8f8; border: 1px solid #cccccc; font-size: 12px; line-height: 19px; overflow: auto; padding: 6px 10px; border-radius: 3px;}
 .md pre code, .md pre tt { background-color: transparent; border: none; white-space: pre-wrap;word-break: break-all; }
 
-/*scrollbar*/
-::-webkit-scrollbar {width: 7px;height: 7px;}
-::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {height: 0px;display: block;background-color: transparent;}
-::-webkit-scrollbar-track-piece {background: #1b1b1b;}
-::-webkit-scrollbar-thumb {background: #1b1b1b;}
-::-webkit-scrollbar-thumb:vertical {border-right: 2px #fff solid;height: 50px;}
-::-webkit-scrollbar-thumb:horizontal {border-bottom: 2px #fff solid;width: 50px;}
-::-webkit-scrollbar-thumb:hover {background: #1a375d;border-width:5px;}
-
-
