@@ -40,7 +40,7 @@ footer{padding:15px; border-top:solid 1px #ccc;}
 .blog-list{border:solid 1px #ddd;border-radius:4px;background-color:#fff;padding:15px 30px;margin:0;}
 .blog-list li{list-style:none;}
 .blog-list>li{font-size:2em;margin:16px 0;}
-.blog-list ul{border-top:solid 1px #ccc;margin:5px 0;padding-top:3px;}
+.blog-list ul{border-top:solid 1px #ccc;margin:5px 0;padding-top:3px;padding-left:20px;}
 .blog-list ul li{font-size:0.5em;margin:5px 0;}
 .blog-list span{color:#666;margin:0 2px;}
 .blog-list a{margin-left:2px;}
