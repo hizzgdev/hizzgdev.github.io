@@ -138,7 +138,7 @@ function show_blog(resp, fresh){
         show_404();
         return;
     }
-    var path = resp.data.path;
+    var path=__md_path;
     if(fresh && !!localStorage){
         localStorage[path] = JSON.stringify(resp);
         localStorage[path+'.time'] = (new Date()).toISOString();
