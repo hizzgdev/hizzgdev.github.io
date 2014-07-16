@@ -4,12 +4,12 @@ title: Zhigang Zhang's Blog
 ---
 {% for post in site.posts %}
     {% capture y %}{{ post.date | date:"%Y" }}{% endcapture %}
-    {% capture m %}{{ post.date | date:"%M" }}{% endcapture %}
+    {% capture m %}{{ post.date | date:"%m" }}{% endcapture %}
     {% capture y1 %}{{ post.previous.date | date:"%Y" }}{% endcapture %}
-    {% capture m1 %}{{ post.previous.date | date:"%M" }}{% endcapture %}
+    {% capture m1 %}{{ post.previous.date | date:"%m" }}{% endcapture %}
 
     {% if y != y1 and m != m1 %}
-        {% if not forloop.first %}
+        {% if forloop.first == false %}
             </ul></li>
         {% endif %}
     <li>{{ y }}.{{ m }}<ul>
