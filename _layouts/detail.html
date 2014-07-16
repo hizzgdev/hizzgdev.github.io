@@ -32,15 +32,16 @@
         {{ content }}
         </section>
         <footer>
-          <p>Posted: <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time><a href="{{ page.path }}" target="_blank">Markdown</a></p>  
+          <p>Posted: <time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date:"%Y-%m-%d" }}</time><a href="/{{ page.path }}" target="_blank">Markdown</a></p>  
         </footer>
       </article>
     </div>
     <footer>
       <p>2014 &copy; hizzgdev.github.io</p>
     </footer>
+    <div id="disqus_thread"></div>
   </div>
 </body>
-<script src="/scripts/base64.js"></script>
-<script src="/scripts/markdown.min.js"></script>
+<script>var disqus_shortname='hizzgdev';</script>
+<script src="//hizzgdev.disqus.com/embed.js" async></script>
 </html>
