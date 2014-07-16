@@ -8,17 +8,14 @@ title: Zhigang Zhang's Blog
     {% capture y1 %}{{ post.previous.date | date:"%Y" }}{% endcapture %}
     {% capture m1 %}{{ post.previous.date | date:"%m" }}{% endcapture %}
 
-    {% if y != y1 and m != m1 %}
-        {% if forloop.first == false %}
-    </ul></li>
-    <li>{{ y1 }}.{{ m1 }}<ul>
-        {% endif %}
-    {% endif %}
     {% if forloop.first %}
-    <li>{{ y }}.{{ m }}<ul>
+        <li>{{ y }}.{{ m }}<ul>
     {% endif %}
-<li><span>{{ post.date }}</span><span>»</span><a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% if forloop.last %}
+          <li><span>{{ post.date }}</span><span>»</span><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% if y != y1 and m != m1 %}
         </ul></li>
+        {% if forloop.last == false %}
+        <li>{{ y1 }}.{{ m1 }}<ul>
+        {% endif %}
     {% endif %}
 {% endfor %}
