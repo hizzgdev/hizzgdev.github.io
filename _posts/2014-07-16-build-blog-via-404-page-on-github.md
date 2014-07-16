@@ -15,7 +15,6 @@ title: 利用404页面在Github上搭建博客
 5. 利用javascript版的Markdown解析工具对.md内容进行处理，显示到404页面上；
 6. 利用localStorage缓存GitHub API响应的结果以提高响应速度。
 
-代码比较简单，不再列出。有兴趣者可以分析本页面的源文件获取更多信息。
 
 [1]:http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html
 [2]:https://github.com/sneezry/Hooloo
