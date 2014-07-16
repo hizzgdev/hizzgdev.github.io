@@ -8,8 +8,8 @@ title: Zhigang Zhang's Blog
     {% capture y1 %}{{ post.previous.date | date:"%Y" }}{% endcapture %}
     {% capture m1 %}{{ post.previous.date | date:"%M" }}{% endcapture %}
 
-    {% if y != y1 %}
-        {% if !forloop.first %}
+    {% if y != y1 and m != m1 %}
+        {% if not forloop.first %}
             </ul></li>
         {% endif %}
     <li>{{ y }}.{{ m }}<ul>
