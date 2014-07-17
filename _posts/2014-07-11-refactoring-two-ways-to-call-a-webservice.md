@@ -17,7 +17,6 @@ A连接WebService时使用的是cxf框架，cxf提供了两种访问远程WebSer
 
 方法一：使用JaxWsProxyFactoryBean类
 
-{% highlight %}
     JaxWsProxyFactoryBean svr = new JaxWsProxyFactoryBean();
     // BizService 是A应用提供的接口
     svr.setServiceClass(BizService.class);
@@ -28,7 +27,6 @@ A连接WebService时使用的是cxf框架，cxf提供了两种访问远程WebSer
     service.PushData(...);
     // 调用远程 WebService 的 PushData2 方法
     service.PushData2(...);
-{% endhighlight %}
 
 方法二：使用JaxWsDynamicClientFactory类
 
