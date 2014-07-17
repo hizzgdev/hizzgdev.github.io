@@ -18,6 +18,7 @@ A连接WebService时使用的是cxf框架，cxf提供了两种访问远程WebSer
 方法一：使用JaxWsProxyFactoryBean类
 
     ```java
+
     JaxWsProxyFactoryBean svr = new JaxWsProxyFactoryBean();
     // BizService 是A应用提供的接口
     svr.setServiceClass(BizService.class);
@@ -28,10 +29,12 @@ A连接WebService时使用的是cxf框架，cxf提供了两种访问远程WebSer
     service.PushData(...);
     // 调用远程 WebService 的 PushData2 方法
     service.PushData2(...);
+
     ```
 
 方法二：使用JaxWsDynamicClientFactory类
 
+```java
     JaxWsDynamicClientFactory dcf = JaxWsDynamicClientFactory.newInstance();
     // 连接远程 WebService
     Client client = dcf.createClient("http://localhost:8080/BizService?wsdl"); 
@@ -39,12 +42,15 @@ A连接WebService时使用的是cxf框架，cxf提供了两种访问远程WebSer
     client.invoke("PushData",...);
     // 调用远程 WebService 的 PushData2 方法
     client.invoke("PushData2",...);
+```
 
 
 不合适的解决办法
 ==========================
 
 为了能尽快完成工作，项目组经过测试后决定使用方法二对A进行重构以达到更高的兼容性。项目组修改后的代码大概如下所示：
+
+```java
 
     // WebServiceUtil.java
     public class WebServiceUtil{
@@ -76,6 +82,8 @@ A连接WebService时使用的是cxf框架，cxf提供了两种访问远程WebSer
         Client client = WebServiceUtil.getServiceClient(app.getIp(),app.getPort());
         client.invoke("PushData",data);
     }
+
+```
 
 项目组增加了一个新的连接WebService的方法，再在代码中把原来大量的基于接口的方法调用`service.PushData(...)`换成了`client.invoke("PushData",...)`。
 
