@@ -8,7 +8,7 @@ title: Zhigang Zhang's Blog
         <title>Zhigang Zhang's Blog</title>
         <description>an idealist's cheap talk</description>      
         <link>http://hizzgdev.github.io/blog.html</link>
-        <atom:link href="http://hizzgdev.github.io/blog.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://hizzgdev.github.io/blog-rss.xml" rel="self" type="application/rss+xml" />
         {% for post in site.posts limit:20 %}
         <item>
             <title>{{ post.title }}</title>
