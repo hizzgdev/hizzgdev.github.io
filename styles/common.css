@@ -38,7 +38,7 @@ header p{font-size:1.25em;}
 
 footer{padding:15px; border-top:solid 1px #ccc;}
 
-.blog-list{border:solid 1px #ddd;border-radius:4px;background-color:#fff;padding:15px 30px;margin:0;}
+.blog-list{border:solid 1px #ddd;border-radius:4px;background-color:#fff;padding:15px 30px;margin:0 0 20px;}
 .blog-list li{list-style:none;}
 .blog-list>li{font-size:2em;margin:16px 0;}
 .blog-list ul{border-top:solid 1px #ccc;margin:5px 0;padding-top:3px;}
