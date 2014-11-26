@@ -16,7 +16,9 @@ title: 基于Servlet3.0的JavaEE模块化设计
 ==========
 Servlet 3.0 于 2010 年随 Java EE 6 规范一起发布。其中有几项特性比较引人注目：异步处理支持/注解支持/插件式支持，具体的内容请参考 IBM developerWorks 的这篇文章：[《Servlet 3.0 新特性详解》][1]。文章中提到：
 
-> 使用该特性（插件式支持），现在我们可以在不修改已有 Web 应用的前提下，只需将按照一定格式打成的 JAR 包放到 WEB-INF/lib 目录下，即可实现新功能的扩充，不需要额外的配置。   Servlet 3.0 引入了称之为“Web 模块部署描述符片段”的 web-fragment.xml 部署描述文件，该文件必须存放在在 jar 文件的 META-INF 目录下，该部署描述文件可以包含一切可以在 web.xml 中定义的内容。
+> 使用该特性（插件式支持），现在我们可以在不修改已有 Web 应用的前提下，只需将按照一定格式打成的 JAR 包放到 WEB-INF/lib 目录下，即可实现新功能的扩充，不需要额外的配置。
+
+> Servlet 3.0 引入了称之为“Web 模块部署描述符片段”的 web-fragment.xml 部署描述文件，该文件必须存放在在 jar 文件的 META-INF 目录下，该部署描述文件可以包含一切可以在 web.xml 中定义的内容。
 
 也即是说在 Servlet3.0 里的 web-fragment.xml 与 web.xml 几乎具备了同等的能力。只不过，在 web.xml 中保留了是否启用这个特性的配置开关，各 web-fragment.xml 也可以指定各自加载的顺序。
 
