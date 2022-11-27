@@ -21,3 +21,14 @@ li a:hover{color:#fff;background-color:#666;background-color:rgba(0,0,0,0.6);}
   ul{float:none;}
   img{display:none;}
 }
+
+@media (prefers-color-scheme: dark) {
+  body{ background-color:#000; background-image: none; }
+  span, p, footer, li{color: #aaa;}
+  header{border-bottom-color: #333;}
+  footer{border-top-color: #333;}
+  .main{background-color:#121212;}
+  img{background-color: #666;}
+  li a{color:#3e92db;}
+  li a:hover{color:#183a57;;background-color:rgba(255,255,255,0.4);}
+}

@@ -57,3 +57,7 @@
 .md pre { background-color: #f8f8f8; border: 1px solid #cccccc; font-size: 12px; line-height: 19px; overflow: auto; padding: 6px 10px; border-radius: 3px;}
 .md pre code, .md pre tt { background-color: transparent; border: none; white-space: pre-wrap;word-break: break-all; }
 
+
+@media (prefers-color-scheme: dark) {
+    .md p, .md li {color: #aaa;}
+}
