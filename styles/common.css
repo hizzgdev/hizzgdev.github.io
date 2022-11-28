@@ -86,4 +86,5 @@ article img{display: block; height: auto; max-width: 100%;}
   footer{border-top-color: #333;}
   nav a{color:#3e92db; background-color: #333;}
   nav a:hover, nav a.active{color:#183a57;background-color:#999;}
+  img {filter: brightness(0.4)}
 }
