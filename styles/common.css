@@ -84,7 +84,9 @@ article img.inline{display: inline;}
   span,p,footer,li,h1,h2,h3,h4,h5,h6{color: #aaa;}
   article{background-color: #121212; border-color: #333;}
   article header{border-bottom-color: #333;}
+  article aside{background-color: #000;}
   .blog-list{background-color: #121212; border-color: #333;}
+  .blog-list ul {border-color: #333;}
   nav a{color:#3e92db; background-color: #333;}
   nav a:hover, nav a.active{color:#183a57;background-color:#999;}
   img {filter: brightness(0.4)}
