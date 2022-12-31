@@ -7,22 +7,22 @@ title: 永远的重构[2]-如何支持多种认证方法
 项目组于是提供了三个选项，并按照这三种方式分别实现了不同的登录验证方法：
 
 ```java
-    public AuthResult Auth(HttpServletRequest request, HttpServletResponse response){
-        // 读取当前设置的认证方式
-        AuthOption option = ...
-        // 选择进入不同的认证方法
-        if(option == AuthOption.PASSWORD){
-            return AuthByPassword(request,response);
-        }else if(option == AuthOption.CA){
-            return AuthByCA(request,response);
-        }else if(option == AuthOption.PASSWORD_CA){
-            return AuthByPasswordAndCA(request,response);
-        }
+public AuthResult Auth(HttpServletRequest request, HttpServletResponse response){
+    // 读取当前设置的认证方式
+    AuthOption option = ...
+    // 选择进入不同的认证方法
+    if(option == AuthOption.PASSWORD){
+        return AuthByPassword(request,response);
+    }else if(option == AuthOption.CA){
+        return AuthByCA(request,response);
+    }else if(option == AuthOption.PASSWORD_CA){
+        return AuthByPasswordAndCA(request,response);
     }
+}
 
-    private AuthResult AuthByPassword(...)...
-    private AuthResult AuthByCA(...)...
-    private AuthResult AuthByPasswordAndCA(...)...
+private AuthResult AuthByPassword(...)...
+private AuthResult AuthByCA(...)...
+private AuthResult AuthByPasswordAndCA(...)...
 ```
 
 项目上线后，用户新引进了一套动态口令系统，于是要求软件支持密码、UKey、动态口令三种方式的任何组合对用户进行复合身份认证。按照项目组目前实现的方法，要满足用户的要求，需要2^3个选项，不仅配置上看起来不清晰，程序逻辑也将显得非常臃肿。
@@ -32,37 +32,37 @@ title: 永远的重构[2]-如何支持多种认证方法
 首先将配置选项改为三组：`是否启用密码认证`/`是否启用UKey认证`/`是否启用动态口令认证`，对应的AuthOption由原来的枚举变更为一个类：
 
 ```java
-    class AuthOption{
-        public boolean EnablePassword;
-        public boolean EnableCA;
-        public boolean EnableDP;
-    }
+class AuthOption{
+    public boolean EnablePassword;
+    public boolean EnableCA;
+    public boolean EnableDP;
+}
 ```
 
 其次，完成三个单纯的认证方法：
 
 ```java
-    private AuthResultItem AuthByPassword(...)...
-    private AuthResultItem AuthByCA(...)...
-    private AuthResultItem AuthByDP(...)...
+private AuthResultItem AuthByPassword(...)...
+private AuthResultItem AuthByCA(...)...
+private AuthResultItem AuthByDP(...)...
 ```
 
 最后，重构组合认证方法：
 
 ```java
-    public AuthResult Auth(...){
-        AuthResult result = new AuthResult();
-        if(AuthOption.EnablePassword){
-            result.Add(AuthByPassword(...));
-        }
-        if(AuthOption.EnableCA){
-            result.Add(AuthByCA(...));
-        }
-        if(AuthOption.EnableDP){
-            result.Add(AuthByDP(...));
-        }
-        return result
+public AuthResult Auth(...){
+    AuthResult result = new AuthResult();
+    if(AuthOption.EnablePassword){
+        result.Add(AuthByPassword(...));
     }
+    if(AuthOption.EnableCA){
+        result.Add(AuthByCA(...));
+    }
+    if(AuthOption.EnableDP){
+        result.Add(AuthByDP(...));
+    }
+    return result
+}
 ```
 
 *对应的 AuthResult 类也应该同时进行重构。*

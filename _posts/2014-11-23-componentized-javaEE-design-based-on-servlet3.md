@@ -74,26 +74,28 @@ JavaEE 工程的模块化设计与一般的 Java 模块相比，除了要做好�
 
 模板以 Maven 的 archetype 方式提供，其内部结构大致如下所示：
 
-    template.jar
-        └─src/main/java
-            ├─com.company.groupid.artifactid
-            │  ├─controller
-            │  ├─dao
-            │  ├─facade
-            │  ├─model
-            │  ├─service
-            │  └─ModuleListener.java
-            └─META-INF
-                │  artifactid.properties
-                │  MANIFEST.MF
-                │  spring-beans-artifactid.xml
-                │  web-fragment.xml
-                │
-                └─resources
-                    ├─static
-                    │  └─artifactid
-                    └─views
-                        └─artifactid
+```
+template.jar
+    └─src/main/java
+        ├─com.company.groupid.artifactid
+        │  ├─controller
+        │  ├─dao
+        │  ├─facade
+        │  ├─model
+        │  ├─service
+        │  └─ModuleListener.java
+        └─META-INF
+            │  artifactid.properties
+            │  MANIFEST.MF
+            │  spring-beans-artifactid.xml
+            │  web-fragment.xml
+            │
+            └─resources
+                ├─static
+                │  └─artifactid
+                └─views
+                    └─artifactid
+```
 
 模板内部的 artifactid/groupid 可分别用于标识模块的名称和所在的分组。关于模块内部的这些文件稍后会详细介绍。
 
@@ -151,12 +153,14 @@ Mybatis 自 3.1.1 之后，已支持在每个 mapper 文件中定义第一个 sq
 
 要实现到这一点，可利用 Maven 生成 jar 文件时，往 MANIFEST.MF 文件中写入一些信息，主要包括以下内容：
 
-    module-name:名称
-    module-version:版本
-    module-description:描述
-    module-manufacturer:开发商
-    module-manager-class:定义的此模块的管理类
-    build-time:生成时间
+```
+module-name:名称
+module-version:版本
+module-description:描述
+module-manufacturer:开发商
+module-manager-class:定义的此模块的管理类
+build-time:生成时间
+```
 
 此模块的管理类需要继承核心里的抽象类，或实现核心里的接口，反射此类后，即可调用抽象类或接口的方法进行模块的部署。
 
