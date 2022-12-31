@@ -36,7 +36,7 @@ nav a:hover, nav a.active{color:#fff;background-color:#1d5cc2;}
 header{padding:10px 0 10px 0;}
 header p{font-size:1.25em;}
 
-footer{padding:15px; border-top:solid 1px #ccc;}
+footer{padding:15px;}
 
 .blog-list{border:solid 1px #ddd;border-radius:4px;background-color:#fff;padding:15px 30px;margin:0 0 20px;}
 .blog-list li{list-style:none;}
@@ -84,7 +84,7 @@ article img.inline{display: inline;}
   span,p,footer,li,h1,h2,h3,h4,h5,h6{color: #aaa;}
   article{background-color: #121212; border-color: #333;}
   article header{border-bottom-color: #333;}
-  footer{border-top-color: #333;}
+  .blog-list{background-color: #121212; border-color: #333;}
   nav a{color:#3e92db; background-color: #333;}
   nav a:hover, nav a.active{color:#183a57;background-color:#999;}
   img {filter: brightness(0.4)}
