@@ -60,4 +60,7 @@
 
 @media (prefers-color-scheme: dark) {
     .md p, .md li {color: #aaa;}
+    .md .highlight pre {background-color: #313131; border: 1px solid #494949;}
+    .md pre code {color: #bbbbbb;}
+    .md code {background-color: #313131; border: 1px solid #494949;}
 }

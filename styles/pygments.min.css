@@ -121,3 +121,9 @@ pre .il{color:#40a070}
 .syntax pre .vg{color:#bb60d5} 
 .syntax pre .vi{color:#bb60d5} 
 .syntax pre .il{color:#40a070} 
+
+@media (prefers-color-scheme: dark) {
+    pre .nf {color: #2e6fff;}
+    pre .nl {color: #2e6fff;}
+    pre .nt {color: #2e6fff;}
+}
