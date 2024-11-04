@@ -1,6 +1,7 @@
 ---
 layout: index
 title: Zhigang Zhang's Blog
+description: jsMind story 
 ---
 {% for post in site.categories.jsmind %} {% capture y %}{{ post.date | date:"%Y" }}{% endcapture %} {% capture y1 %}{{ post.previous.date | date:"%Y" }}{% endcapture %} {% if forloop.first %}
         <li>{{ y }}<ul> {% endif %}
