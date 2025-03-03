@@ -11,7 +11,9 @@ Jest 对 ES module 的支持
 
 但它对 ES Module 还没有正式支持，截止到2025年3月的最新版本 29.7 （以及 Next 版本），它的文档 [ECMAScript Modules](https://jestjs.io/docs/ecmascript-modules) 里仍然是：
 
-> Jest ships with experimental support for ECMAScript Modules (ESM).
+```
+Jest ships with experimental support for ECMAScript Modules (ESM).
+```
 
 而不巧的是，jsMind 用的正是 ES6，而且没有使用 babel 进行“编译”，所以在使用 jest 时需要一些额外的工作：
 
@@ -25,9 +27,11 @@ Nodejs 的内置测试框架
 
 那除了 jest 之外，是否有其它的单元测试框架能够更好地支持 ES Module 呢？经过搜索，找到了这篇文章，[Testing in Node: A Comparison of the Top 9 Libraries](https://betterstack.com/community/guides/testing/best-node-testing-libraries/)，里面提到：
 
-> Node.js has historically relied on third-party testing libraries. However, with the introduction of Node.js v18, the landscape underwent a significant shift. Node.js shipped with an experimental built-in test runner, which received stabilization status in Node.js 20. This move aimed to minimize reliance on third-party dependencies. 
+```
+Node.js has historically relied on third-party testing libraries. However, with the introduction of Node.js v18, the landscape underwent a significant shift. Node.js shipped with an experimental built-in test runner, which received stabilization status in Node.js 20. This move aimed to minimize reliance on third-party dependencies. 
+```
 
-原来 v20.x 的时候，Node 已经正式推出了 Test Runner。
+原来 v20.x 的时候，Node 已经正式推出了 [Test Runner](https://nodejs.org/docs/latest/api/test.html) 和 [Assertion](https://nodejs.org/docs/latest/api/assert.html)。
 
 jsMind V2 Unit Test 代码迁移
 ===
