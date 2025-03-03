@@ -4,7 +4,7 @@ title: jsMind V2 开发记录 - 基础设施
 ---
 
 # 开源
-jsMind V2 仍然是开源的，源码仍然托管在 GitHub 上，但使用了一个新的 repo: [jsmind-v2](https://github.com/hizzgdev/jsmind-v2), 这样可以避免影响到 jsMind 目前的版本。
+jsMind V2 仍然是开源的，源码仍然托管在 GitHub 上。这个版本从零开始重写，使用了一个新的 repo: [jsmind-v2](https://github.com/hizzgdev/jsmind-v2)。
 
 # 基础设置
 
