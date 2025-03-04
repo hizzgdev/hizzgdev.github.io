@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: jsMind V2 开发记录 - from jest to node test runner
+title: jsMind V2 开发记录 - from jest to node test
 sn: 209
 ---
 
