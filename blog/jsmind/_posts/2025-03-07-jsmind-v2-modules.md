@@ -4,7 +4,7 @@ title: jsMind V2 开发记录 - 模块与交互
 sn: 210
 ---
 
-![image](/blog/jsmind/images/2025/modules.png)
+![image](/blog/jsmind/images/2025/cover-modules.png)
 
 设想
 ===
@@ -20,7 +20,6 @@ const node = jsmind.add_node('root-node-id', 'node1', 'topic of node1')
 
 // update node topic
 jsmind.update_node('node1', 'new topic of node1');
-//
 ```
 
 在上面的 V1 版本中，几乎所有的 API 都由 jsMind 对象承担。在 V2 版本中，API 设想如下：
@@ -68,8 +67,8 @@ Arranger 是一类模块，除了 Mindmap Arranger 外，还可以实现出 Orga
 
 上面的示例代码显示，修改节点文本只需更新 node.topic 属性。在 jsMind 内部，数据变化要反映在脑图上，需要一定的交互设计。
 
+![modules](/blog/jsmind/images/2025/jsmind-v2-modules.png)
+
 数据层位于架构底层，被其他模块引用。数据变化时，需通知 arranger 和 view 更新视图。
 
 用户通过 UI 更新节点或脑图时，jsMind 将会先更新 mindmap 数据，再通知其他模块更新视图。
-
-![modules](/blog/jsmind/images/2025/jsmind-v2-modules.png)

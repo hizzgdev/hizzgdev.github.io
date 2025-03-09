@@ -4,7 +4,7 @@ title: jsMind V2 开发记录 - from jest to node test
 sn: 209
 ---
 
-![image](/blog/jsmind/images/2025/from-jest-to-node-test.png)
+![image](/blog/jsmind/images/2025/cover-from-jest-to-node-test.png)
 
 Jest 对 ES module 的支持
 ===
